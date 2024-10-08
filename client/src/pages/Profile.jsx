@@ -21,6 +21,7 @@ const Profile = () => {
   }, [address, contract]);
 
   return (
+    
     <DisplayCampaigns 
       title="All Campaigns"
       isLoading={isLoading}

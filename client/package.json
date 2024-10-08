@@ -9,9 +9,12 @@
     "deploy": "yarn build && npx thirdweb@latest upload dist"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
+    "axios": "^1.7.7",
     "ethers": "^5.7.2",
+    "okto-sdk-react": "^0.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.4"

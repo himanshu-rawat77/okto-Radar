@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
-
+import React, { useState, useEffect } from 'react';
 import { DisplayCampaigns } from '../components';
-import { useStateContext } from '../context'
+import { useStateContext } from '../context';
+import { Sidebar, Navbar } from '../components';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
-
   const { address, contract, getCampaigns } = useStateContext();
 
   const fetchCampaigns = async () => {
@@ -14,19 +13,32 @@ const Home = () => {
     const data = await getCampaigns();
     setCampaigns(data);
     setIsLoading(false);
-  }
+  };
 
   useEffect(() => {
-    if(contract) fetchCampaigns();
+    if (contract) fetchCampaigns();
   }, [address, contract]);
 
   return (
-    <DisplayCampaigns 
-      title="All Campaigns"
-      isLoading={isLoading}
-      campaigns={campaigns}
-    />
-  )
-}
+    <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
+      {/* Sidebar for navigation */}
+      <div className="sm:flex hidden mr-10 relative">
+        <Sidebar />
+      </div>
 
-export default Home
+      <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
+        {/* Navbar at the top */}
+        <Navbar />
+
+        {/* Main content: Displaying the campaigns */}
+        <DisplayCampaigns 
+          title="All Campaigns"
+          isLoading={isLoading}
+          campaigns={campaigns}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Home;
